@@ -1,7 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Tool = ({ tool }) => {
-    const { name, img, price, minimumOrder, availableQuantity, description } = tool;
+    const { _id, name, img, price, minimumOrder, availableQuantity, description } = tool;
+
+    const navigate = useNavigate();
+
+    const handleOrderBtn = (id) => {
+        navigate(`/order/${id}`)
+    }
     return (
         <div className="card md:max-w-md bg-base-100 shadow-xl glass">
             <figure className="px-10 pt-10">
@@ -14,7 +21,7 @@ const Tool = ({ tool }) => {
                 <p className='text-lg'>Stock available: {availableQuantity} <span className='text-accent'>/pcs</span></p>
                 <p className='text-lg'>Price: ${price} <span className='text-accent'>/pcs</span></p>
                 <div className="card-actions">
-                    <button className="btn btn-secondary sm:btn-sm md:btn-md hover:bg-transparent hover:text-secondary">Buy Now</button>
+                    <button onClick={() => handleOrderBtn(_id)} className="btn btn-secondary sm:btn-sm md:btn-md hover:bg-transparent hover:text-secondary">Order now</button>
                 </div>
             </div>
         </div>
