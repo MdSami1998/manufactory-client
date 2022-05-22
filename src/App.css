@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo&family=Lato&family=Lobster&family=Lobster+Two&family=Merriweather&family=Merriweather+Sans:ital@1&family=Playfair+Display&family=Rubik&display=swap');
+
 .App {
   text-align: center;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .App-logo {
@@ -32,6 +35,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

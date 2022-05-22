@@ -7,7 +7,7 @@ const Navbar = () => {
         <li><Link className='text-accent' to='/blog'>Blogs</Link></li>
     </>
     return (
-        <div className='sticky top-0'>
+        <div className='sticky top-0 z-10'>
             <div className="navbar bg-base-100 text-xl px-0 md:px-20">
                 <div className="navbar-start">
                     <div className="dropdown">

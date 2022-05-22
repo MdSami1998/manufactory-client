@@ -5,18 +5,21 @@ import Loading from '../Shared/Loading/Loading'
 
 const Tools = () => {
     const { data: tools, isLoading } = useQuery('tools', () =>
-        fetch('tools.json').then(res =>
+        fetch('http://localhost:5000/tools').then(res =>
             res.json()
         )
     )
-    if(isLoading){
+    if (isLoading) {
         return <Loading></Loading>
     }
     return (
         <div>
-            {
-                tools.map(tool => <Tool tool={tool}></Tool>)
-            }
+            <h1 className='text-accent text-5xl font-bold mt-10'>Our Products</h1>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-20 my-10 px-2 md:px-20'>
+                {
+                    tools.map(tool => <Tool key={tool._id} tool={tool}></Tool>)
+                }
+            </div>
         </div>
     );
 };
