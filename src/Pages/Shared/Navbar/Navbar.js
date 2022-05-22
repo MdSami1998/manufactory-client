@@ -5,6 +5,7 @@ const Navbar = () => {
     const menuItems = <>
         <li><Link className='text-accent' to='/'>Home</Link></li>
         <li><Link className='text-accent' to='/blog'>Blogs</Link></li>
+        <li><Link className='text-accent' to='/login'>Log In</Link></li>
     </>
     return (
         <div className='sticky top-0 z-10'>

@@ -6,6 +6,9 @@ import Blogs from './Pages/Blogs/Blogs'
 import NotFound from './Pages/Shared/NotFound/NotFound'
 import Footer from './Pages/Shared/Footer/Footer';
 import Order from './Pages/Order/Order';
+import { ToastContainer } from 'react-toastify';
+import Login from './Pages/Log In/Login';
+import Signup from './Pages/Signup/Signup';
 
 function App() {
   return (
@@ -16,9 +19,12 @@ function App() {
         <Route path='/home' element={<Home></Home>}></Route>
         <Route path='/blog' element={<Blogs></Blogs>}></Route>
         <Route path='/order/:id' element={<Order></Order>}></Route>
+        <Route path='/login' element={<Login></Login>}></Route>
+        <Route path='/signup' element={<Signup></Signup>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
       <Footer></Footer>
+      <ToastContainer></ToastContainer>
      </div>
   );
 }

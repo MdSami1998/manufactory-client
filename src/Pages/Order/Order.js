@@ -3,6 +3,7 @@ import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import Loading from '../Shared/Loading/Loading';
 import { PlusCircleIcon,MinusCircleIcon } from '@heroicons/react/solid'
+import { toast } from 'react-toastify';
 
 const Order = () => {
     const { id } = useParams();
@@ -15,15 +16,39 @@ const Order = () => {
     if (isLoading) {
         return <Loading></Loading>
     }
+
+    const handleDeliveredBtn = () => {
+
+        const minimumOrder = tool.minimumOrder;
+
+            const quantity = parseInt(minimumOrder) +20;
+            console.log(quantity)
+            const valueAfterDelivered = { quantity };
+
+            const url = `http://localhost:5000/tools/${id}`
+            fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(valueAfterDelivered)
+            })
+                .then(res => res.json())
+                .then(data => console.log("success", data));
+            toast('Product Delivered!!');
+
+
+    }
+    
     return (
         <div class="hero md:min-h-full ">
             <div class="hero-content flex-col lg:flex-row">
                 <img className='w-96' src={tool.img} alt="" />
                 <div className='text-justify h-64 flex flex-col justify-evenly'>
-                    <h1 class="text-5xl font-bold">{tool.name}</h1>
+                    <h1 class="text-4xl md:text-5xl font-bold">{tool.name}</h1>
                     <p className='text-lg'>Stock available: {tool.availableQuantity} <span className='text-accent'>/pcs</span></p>
                     <p className='text-lg'>Price: ${tool.price} <span className='text-accent'>/pcs</span></p>
-                    <p className='text-lg flex justify-center items-center'>Minimum Order: <MinusCircleIcon className='w-10'></MinusCircleIcon> {tool.minimumOrder} <span className='text-accent'>/pcs</span><PlusCircleIcon className='w-10'></PlusCircleIcon></p>
+                    <p className='text-lg flex items-center'>Minimum Order: <MinusCircleIcon className='w-10'></MinusCircleIcon> {tool.minimumOrder} <span className='text-accent'>/pcs</span><PlusCircleIcon onClick={handleDeliveredBtn} className='w-10'></PlusCircleIcon></p>
 
                     <button class="btn btn-secondary sm:btn-sm md:btn-md hover:bg-transparent hover:text-secondary">purchase</button>
                 </div>
