@@ -58,11 +58,11 @@ const Signup = () => {
                         <p className='mb-2 font-bold text-center'><small>
                             Already have an account? <Link to="/login" className='text-accent'>Please Login</Link></small></p>
 
-                        <input className='btn btn-accent sm:btn-sm md:btn-md hover:bg-transparent hover:text-secondary' type="submit" value="Signup" />
+                        <input className='btn btn-accent sm:btn-sm md:btn-md hover:bg-transparent hover:text-accent w-full max-w-xs' type="submit" value="Signup" />
                     </form>
 
                     <div className="divider">OR</div>
-                    <button className="btn btn-accent sm:btn-sm md:btn-md hover:bg-transparent hover:text-secondary">Continue with Google</button>
+                    <button className="btn btn-secondary sm:btn-sm md:btn-md hover:bg-transparent hover:text-secondary">Continue with Google</button>
                 </div>
             </div>
         </div>

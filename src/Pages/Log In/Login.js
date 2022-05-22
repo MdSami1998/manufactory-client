@@ -1,14 +1,38 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 import { Link } from 'react-router-dom';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init'
+import Loading from '../Shared/Loading/Loading';
 
 
 const Login = () => {
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useSignInWithEmailAndPassword(auth);
 
     const { register, formState: { errors }, handleSubmit } = useForm();
 
+    let signInError;
+    if (error || gError) {
+        signInError = <p className='text-red-500'>{error.message || gError.message}</p>
+    }
 
-    const onSubmit = data => console.log(data);
+    if (loading || gLoading) {
+        return <Loading></Loading>
+    }
+
+    if (user || gUser) {
+        console.log(gUser);
+    }
+
+    
+
+    
     return (
         <div className='flex h-screen justify-center items-center'>
             <div className="card w-96 shadow-xl">
@@ -56,16 +80,16 @@ const Login = () => {
                             </label>
                         </div>
 
-                        {/* {signInError} */}
+                        {signInError}
 
                         <p className='mb-2 font-bold text-center'><small>
                             New to<span className='text-secondary'> Manu</span>factory? <Link to="/signup" className='text-accent'>Create a account</Link></small></p>
 
-                        <input className='btn btn-accent sm:btn-sm md:btn-md hover:bg-transparent hover:text-secondarybtn w-full max-w-xs' type="submit" value="Login" />
+                        <input className='btn btn-accent sm:btn-sm md:btn-md hover:bg-transparent hover:text-accent w-full max-w-xs' type="submit" value="Login" />
                     </form>
 
                     <div className="divider">OR</div>
-                    <button className="btn btn-accent sm:btn-sm md:btn-md hover:bg-transparent hover:text-secondary">Continue with Google</button>
+                    <button onClick={() => signInWithGoogle()} className="btn btn-secondary sm:btn-sm md:btn-md hover:bg-transparent hover:text-secondary">Continue with Google</button>
                 </div>
             </div>
         </div>
