@@ -1,0 +1,50 @@
+[
+    {
+        "img": "https://i.ibb.co/N2vnZ7w/woodwork-tools.webp",
+        "name": "Woodwork Tool",
+        "minimumOrder": 200,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos velit exercitationem aut architecto tenetur in soluta, asperiores qui voluptas voluptatem iste? Ipsa suscipit cupiditate quisquam vel minus eos, saepe expedita.",
+        "availableQuantity": 2000,
+        "price": 129
+    },
+    {
+        "img": "https://i.ibb.co/nmXbjBd/pliers.webp",
+        "name": "Pliers",
+        "minimumOrder": 200,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos velit exercitationem aut architecto tenetur in soluta, asperiores qui voluptas voluptatem iste? Ipsa suscipit cupiditate quisquam vel minus eos, saepe expedita.",
+        "availableQuantity": 2000,
+        "price": 70
+    },
+    {
+        "img": "https://i.ibb.co/s3mbWdN/steel-nail.jpg",
+        "name": "Steel Nail",
+        "minimumOrder": 5000,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos velit exercitationem aut architecto tenetur in soluta, asperiores qui voluptas voluptatem iste? Ipsa suscipit cupiditate quisquam vel minus eos, saepe expedita.",
+        "availableQuantity": 2000,
+        "price": 2.69
+    },
+    {
+        "img": "https://i.ibb.co/M63bRTT/electric-jigsaw.webp",
+        "name": "Electric Jigsaw",
+        "minimumOrder": 200,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos velit exercitationem aut architecto tenetur in soluta, asperiores qui voluptas voluptatem iste? Ipsa suscipit cupiditate quisquam vel minus eos, saepe expedita.",
+        "availableQuantity": 2000,
+        "price": 199
+    },
+    {
+        "img": "https://i.ibb.co/qdvg8C5/hand-saw.webp",
+        "name": "Hand Saw",
+        "minimumOrder": 300,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos velit exercitationem aut architecto tenetur in soluta, asperiores qui voluptas voluptatem iste? Ipsa suscipit cupiditate quisquam vel minus eos, saepe expedita.",
+        "availableQuantity": 2000,
+        "price": 10
+    },
+    {
+        "img": "https://i.ibb.co/hyjMYm5/carpenter-chisel.webp",
+        "name": "Carpenter Chisel",
+        "minimumOrder": 500,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos velit exercitationem aut architecto tenetur in soluta, asperiores qui voluptas voluptatem iste? Ipsa suscipit cupiditate quisquam vel minus eos, saepe expedita.",
+        "availableQuantity": 2000,
+        "price": 8.99
+    }
+]
