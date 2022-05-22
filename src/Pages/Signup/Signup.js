@@ -1,11 +1,41 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import auth from '../../firebase.init';
+import Loading from '../Shared/Loading/Loading';
 
 const Signup = () => {
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+      ] = useCreateUserWithEmailAndPassword(auth);
+
+    const navigate = useNavigate();
+
     const { register, formState: { errors }, handleSubmit } = useForm();
 
-    const onSubmit = data => console.log(data);
+    useEffect(()=>{
+        if (user || gUser) {
+            navigate('/')
+        }
+    },[user,gUser,navigate])
+
+    let signUpError;
+    if (error || gError) {
+        signUpError = <p className='text-red-500'>{error.message || gError.message}</p>
+    }
+
+    if (loading || gLoading) {
+        return <Loading></Loading>
+    }
+
+    const onSubmit = data => {
+        createUserWithEmailAndPassword(data.email,data.password)
+    };
     return (
         <div className='flex h-screen justify-center items-center'>
             <div className="card w-96 shadow-xl">
@@ -53,7 +83,7 @@ const Signup = () => {
                             </label>
                         </div>
 
-                        {/* {signInError} */}
+                        {signUpError}
 
                         <p className='mb-2 font-bold text-center'><small>
                             Already have an account? <Link to="/login" className='text-accent'>Please Login</Link></small></p>
@@ -62,7 +92,7 @@ const Signup = () => {
                     </form>
 
                     <div className="divider">OR</div>
-                    <button className="btn btn-secondary sm:btn-sm md:btn-md hover:bg-transparent hover:text-secondary">Continue with Google</button>
+                    <button onClick={() => signInWithGoogle()} className="btn btn-secondary sm:btn-sm md:btn-md hover:bg-transparent hover:text-secondary">Continue with Google</button>
                 </div>
             </div>
         </div>
