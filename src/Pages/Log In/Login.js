@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useForm } from "react-hook-form";
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init'
 import Loading from '../Shared/Loading/Loading';
@@ -18,12 +18,13 @@ const Login = () => {
     const navigate = useNavigate();
 
     const { register, formState: { errors }, handleSubmit } = useForm();
-
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
     useEffect(()=>{
         if (user || gUser) {
-            navigate('/')
+            navigate(from, { replace: true });
         }
-    },[user,gUser,navigate])
+    },[user,gUser,navigate,from])
 
     let signInError;
     if (error || gError) {
