@@ -21,7 +21,7 @@ const Tool = ({ tool }) => {
                 <p className='text-lg'>Stock available: {availableQuantity} <span className='text-accent'>/pcs</span></p>
                 <p className='text-lg'>Price: ${price} <span className='text-accent'>/pcs</span></p>
                 <div className="card-actions">
-                    <button onClick={() => handleOrderBtn(_id)} className="btn btn-secondary sm:btn-sm md:btn-md hover:bg-transparent hover:text-secondary">Order now</button>
+                    <button onClick={() => handleOrderBtn(_id)} className="btn btn-secondary sm:btn-sm md:btn-md hover:bg-transparent hover:text-secondary">Purchase now</button>
                 </div>
             </div>
         </div>
