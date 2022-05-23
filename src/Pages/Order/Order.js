@@ -2,11 +2,14 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import Loading from '../Shared/Loading/Loading';
-import { PlusCircleIcon, MinusCircleIcon } from '@heroicons/react/solid'
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init'
 import { toast } from 'react-toastify';
 
 const Order = () => {
     const { id } = useParams();
+
+    const [user] = useAuthState(auth);
 
     const { data: tool, isLoading } = useQuery('tool', () =>
         fetch(`http://localhost:5000/tools/${id}`).then(res =>
@@ -17,43 +20,47 @@ const Order = () => {
         return <Loading></Loading>
     }
 
-    const handleDeliveredBtn = () => {
+    const handlePurchasedBtn = (e) => {
+        e.preventDefault();
+        const minimumQuantity = tool.minimumOrder;
 
-        const minimumOrder = tool.minimumOrder;
-
-        const quantity = parseInt(minimumOrder) + 20;
-        console.log(quantity)
-        const valueAfterDelivered = { quantity };
-
-        const url = `http://localhost:5000/tools/${id}`
-        fetch(url, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(valueAfterDelivered)
-        })
-            .then(res => res.json())
-            .then(data => console.log("success", data));
-        toast('Product Delivered!!');
-
-
+        const name=user?.displayName;
+        const email=user.email;
+        const quantity = e.target.quantity.value;
+        const toolName=e.target.toolName.value;
+        console.log(quantity,name,email,toolName)
+        if (quantity < minimumQuantity) {
+            toast.warning(`Minimum order ${minimumQuantity} /pcs`)
+        }
     }
 
     return (
-        <div className="hero md:min-h-full ">
+        <form onSubmit={handlePurchasedBtn} className="hero md:min-h-full ">
             <div className="hero-content flex-col lg:flex-row">
                 <img className='w-96' src={tool.img} alt="" />
-                <div className='text-justify h-64 flex flex-col justify-evenly'>
-                    <h1 className="text-4xl md:text-5xl font-bold">{tool.name}</h1>
-                    <p className='text-lg'>Stock available: {tool.availableQuantity} <span className='text-accent'>/pcs</span></p>
-                    <p className='text-lg'>Price: ${tool.price} <span className='text-accent'>/pcs</span></p>
-                    <p className='text-lg flex items-center'>Minimum Order: <MinusCircleIcon className='w-10'></MinusCircleIcon> {tool.minimumOrder} <span className='text-accent'>/pcs</span><PlusCircleIcon onClick={handleDeliveredBtn} className='w-10'></PlusCircleIcon></p>
 
-                    <button className="btn btn-secondary sm:btn-sm md:btn-md hover:bg-transparent hover:text-secondary">purchase</button>
+                <div className="card-body">
+                    <div className="form-control">
+                        <input type="text" value={user.displayName} disabled className="input input-bordered" name='name' />
+                    </div>
+                    <div className="form-control">
+                        <input type="email" value={user.email} disabled className="input input-bordered" name='email' />
+                    </div>
+                    <div className="form-control">
+                        <input type="text" value={tool.name} className="input input-bordered" disabled name='toolName' />
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text text-accent">Minimum Order Quantity: {tool.minimumOrder} /pcs</span>
+                        </label>
+                        <input type="number" placeholder='Quantity' className="input input-bordered" name='quantity' />
+
+                    </div>
+
+                    <button type='submit' className="btn btn-secondary sm:btn-sm md:btn-md hover:bg-transparent hover:text-secondary">purchase</button>
                 </div>
             </div>
-        </div>
+        </form>
     );
 };
 

@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useForm } from "react-hook-form";
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init'
 import Loading from '../Shared/Loading/Loading';
+import { sendPasswordResetEmail } from 'firebase/auth';
 
 
 const Login = () => {
@@ -14,24 +15,28 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+    const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+
 
     const navigate = useNavigate();
 
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const emailRef = useRef();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
-    useEffect(()=>{
+
+    useEffect(() => {
         if (user || gUser) {
             navigate(from, { replace: true });
         }
-    },[user,gUser,navigate,from])
+    }, [user, gUser, navigate, from])
 
     let signInError;
     if (error || gError) {
         signInError = <p className='text-red-500'>{error.message || gError.message}</p>
     }
 
-    if (loading || gLoading) {
+    if (loading || gLoading || sending) {
         return <Loading></Loading>
     }
 
@@ -39,12 +44,18 @@ const Login = () => {
         signInWithEmailAndPassword(data.email, data.password)
     };
 
+    const handleResetPassword = () => {
+       
+    };
+
+    
+
 
     return (
         <div className='flex h-screen justify-center items-center'>
-            <div className="card w-96 shadow-xl">
+            <div className="card w-96 shadow-xl  border-2 border-white">
                 <div className="card-body">
-                    <h2 className="text-center text-2xl font-bold">Login</h2>
+                    <h2 className="text-center text-accent text-2xl font-bold">Login</h2>
 
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="form-control w-full max-w-xs">
@@ -60,7 +71,7 @@ const Login = () => {
                                     value: /[A-Za-z]{3}/,
                                     message: 'Provide a valid email'
                                 }
-                            })} type="email" placeholder="Your Email" className="input input-bordered w-full max-w-xs" />
+                            })} type="email" ref={emailRef} placeholder="Your Email" className="input input-bordered w-full max-w-xs" />
                             <label className="label">
                                 {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
                                 {errors.email?.type === 'pattern' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
@@ -89,8 +100,10 @@ const Login = () => {
 
                         {signInError}
 
-                        <p className='mb-2 font-bold text-center'><small>
-                            New to<span className='text-secondary'> Manu</span>factory? <Link to="/signup" className='text-accent'>Create a account</Link></small></p>
+                        <p className='text-center text-lg'><small>
+                            New to <span className='text-secondary'> Manu</span>factory? <Link to="/signup" className='text-blue-400 font-semibold'>Create a account</Link></small>
+                        </p>
+                        <p onClick={handleResetPassword} className='mb-2 text-blue-400 underline text-sm cursor-pointer'>Forgot Password?</p>
 
                         <input className='btn btn-accent sm:btn-sm md:btn-md hover:bg-transparent hover:text-accent w-full max-w-xs' type="submit" value="Login" />
                     </form>
