@@ -25,38 +25,51 @@ const Order = () => {
         const minimumQuantity = tool.minimumOrder;
         const stockAvailable = tool.availableQuantity;
 
-        const name = user?.displayName;
-        const email = user.email;
+        const email = user?.email;
+        const userName = user?.displayName;
+        const toolName = tool.name;
         const quantity = e.target.quantity.value;
-        const toolName = e.target.toolName.value;
         const address = e.target.address.value;
         const phone = e.target.phone.value;
+ 
+        const order = { email, userName, toolName, quantity, address, phone };
 
-        const order = {
-            userName: name,
-            userEmail: email,
-            toolName: toolName,
-            orderQuantity: quantity,
-            address: address,
-            phone: phone
-        }
+        // const name = user?.displayName;
+        // const email = user.email;
+        // const quantity = e.target.quantity.value;
+        // const toolName = e.target.toolName.value;
+        // const address = e.target.address.value;
+        // const phone = e.target.phone.value;
+
+        // const order = {
+        //     userName: name,
+        //     email: email,
+        //     toolName: toolName,
+        //     orderQuantity: quantity,
+        //     address: address,
+        //     phone: phone
+        // }
         if (quantity < minimumQuantity) {
-            toast.warning(`Minimum order ${minimumQuantity} /pcs`)
+            return toast.warning(`Minimum order ${minimumQuantity} /pcs`)
         }
         else if (quantity > stockAvailable) {
-            toast.warning(`Stock available ${stockAvailable} /pcs.You can't purchage more then ${stockAvailable} /pcs`)
+            return toast.warning(`Stock available ${stockAvailable} /pcs.You can't purchage more then ${stockAvailable} /pcs`)
         }
-        else {
-            fetch('http://localhost:5000/orders', {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(order)
+
+        fetch('http://localhost:5000/orders', {
+            method: 'POST',
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(order)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success('Order Placed!')
+                }
             })
-            toast.success("Your Order is completed")
             e.target.reset();
-        }
     }
 
     return (
@@ -64,15 +77,18 @@ const Order = () => {
             <div className="hero-content flex-col lg:flex-row md:w-3/5">
                 <div>
                     <img className='w-full md:w-96 mx-auto' src={tool.img} alt="" />
-                    <p className='mt-2 border border-2 border-secondary p-2 rounded '>{tool.description}</p>
+                    <div className='mt-2 border border-2 border-secondary p-2 rounded '>
+                        <p className='text-xl font-semibold mb-2'>{tool.name}</p>
+                        <p className='text-justify'>{tool.description}</p>
+                    </div>
                 </div>
 
                 <div className="card-body p-0 md:p-8 w-full">
                     <div className="form-control">
-                        <input type="text" value={user.displayName} disabled className="input input-bordered uppercase" name='name' />
+                        <input type="text" value={user?.displayName} disabled className="input input-bordered uppercase" name='name' />
                     </div>
                     <div className="form-control">
-                        <input type="email" value={user.email} disabled className="input input-bordered" name='email' />
+                        <input type="email" value={user?.email} disabled className="input input-bordered" name='email' />
                     </div>
                     <div className="form-control">
                         <input type="text" value={tool.name} className="input input-bordered" disabled name='toolName' />
