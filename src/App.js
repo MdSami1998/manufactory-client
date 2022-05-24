@@ -14,7 +14,7 @@ import RequireAuth from './Pages/Shared/RequireAuth/RequireAuth';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import MyProfile from './Pages/Dashboard/MyProfile';
 import AddReview from './Pages/Dashboard/AddReview';
-import MyItems from './Pages/Dashboard/MyItems';
+import MyOrders from './Pages/Dashboard/MyOrders';
 
 function App() {
   return (
@@ -32,7 +32,7 @@ function App() {
             <Dashboard></Dashboard>
           </RequireAuth>}>
           <Route index element={<MyProfile></MyProfile>}></Route>
-          <Route path='myitems' element={<MyItems></MyItems>}></Route>
+          <Route path='myorders' element={<MyOrders></MyOrders>}></Route>
           <Route path='addreview' element={<AddReview></AddReview>}></Route>
         </Route>
         <Route path='/login' element={<Login></Login>}></Route>
