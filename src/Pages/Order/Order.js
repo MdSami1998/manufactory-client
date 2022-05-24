@@ -69,7 +69,7 @@ const Order = () => {
 
                 <div className="card-body p-0 md:p-8 w-full">
                     <div className="form-control">
-                        <input type="text" value={user.displayName} disabled className="input input-bordered" name='name' />
+                        <input type="text" value={user.displayName} disabled className="input input-bordered uppercase" name='name' />
                     </div>
                     <div className="form-control">
                         <input type="email" value={user.email} disabled className="input input-bordered" name='email' />
