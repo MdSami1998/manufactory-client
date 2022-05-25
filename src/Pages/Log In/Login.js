@@ -5,6 +5,7 @@ import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWith
 import auth from '../../firebase.init'
 import Loading from '../Shared/Loading/Loading';
 import { sendPasswordResetEmail } from 'firebase/auth';
+import useToken from '../../hooks/useToken';
 
 
 const Login = () => {
@@ -15,6 +16,9 @@ const Login = () => {
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
+
+    const [token] = useToken(user || gUser)
+
     const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
 
@@ -26,10 +30,10 @@ const Login = () => {
     const from = location.state?.from?.pathname || "/";
 
     useEffect(() => {
-        if (user || gUser) {
+        if (token) {
             navigate(from, { replace: true });
         }
-    }, [user, gUser, navigate, from])
+    }, [token, navigate, from])
 
     let signInError;
     if (error || gError) {
