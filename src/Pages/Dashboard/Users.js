@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import Loading from '../Shared/Loading/Loading';
 
 const Users = () => {
-    const { data: users, isLoading ,refetch} = useQuery('users', () =>
+    const { data: users, isLoading, refetch } = useQuery('users', () =>
         fetch('http://localhost:5000/user', {
             method: 'GET',
             headers: {
@@ -25,10 +25,17 @@ const Users = () => {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             }
         })
-            .then(res => res.json())
+            .then(res => {
+                if (res.status === 403) {
+                    toast.error('Failed to make an admin')
+                }
+                return res.json()
+            })
             .then(data => {
-                refetch();
-                toast.success('Successfully made an admin')
+                if (data.modifiedCount > 0) {
+                    refetch();
+                    toast.success('Successfully made an admin')
+                }
             });
     }
     return (
