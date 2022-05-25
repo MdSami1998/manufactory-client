@@ -1,17 +1,32 @@
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 const MyOrders = () => {
     const [user] = useAuthState(auth);
+    const navigate = useNavigate();
 
     // load order in My Order page of Dashboard
     const [orders, setOrders] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/orders?email=${user?.email}`)
-            .then(res => res.json())
+        fetch(`http://localhost:5000/orders?email=${user?.email}`, {
+            method: 'GET',
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    signOut(auth);
+                    localStorage.removeItem('accessToken');
+                    navigate('/');
+                }
+                return res.json()
+            })
             .then(data => setOrders(data));
-    }, [user, orders]);
+    }, [user, orders, navigate]);
 
 
     // handle order cancel button from My Order page in Dashboard
@@ -40,7 +55,6 @@ const MyOrders = () => {
                     <thead>
                         <tr className='text-secondary'>
                             <th></th>
-                            {/* <th className='text-xl'>Name</th> */}
                             <th className='text-xl'>Tool</th>
                             <th className='text-xl'>Quantity</th>
                             <th className='text-xl'>Price</th>
@@ -52,7 +66,6 @@ const MyOrders = () => {
                         {
                             orders.map((order, index) => <tr key={order._id} className='text-green-200 text-xl'>
                                 <th>{index + 1}</th>
-                                {/* <td className='text-accent'>{order.userName}</td> */}
                                 <td>{order.toolName}</td>
                                 <td>{order.quantity} Pcs</td>
                                 <td>$ {order.price}</td>
