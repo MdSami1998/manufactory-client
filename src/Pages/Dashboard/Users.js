@@ -38,6 +38,7 @@ const Users = () => {
                 }
             });
     }
+
     return (
         <div>
             <div className="overflow-x-auto">
@@ -57,7 +58,7 @@ const Users = () => {
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
 
-                                <td>{user.role === 'admin' ? 'Admin' : <button onClick={() => makeAdmin(user.email)} className='btn btn-sm text-xs bg-secondary hover:bg-transparent text-black hover:text-secondary'>Make Admin</button>}</td>
+                                <td className='text-accent'>{user.role === 'admin' ? 'Admin' : <button onClick={() => makeAdmin(user.email)} className='btn btn-sm text-xs bg-secondary hover:bg-transparent text-black hover:text-secondary'>Make Admin</button>}</td>
 
                                 <td><button className='btn btn-sm text-xs bg-red-500 hover:bg-transparent text-black hover:text-red-500'>Remove Admin</button></td>
                             </tr>)

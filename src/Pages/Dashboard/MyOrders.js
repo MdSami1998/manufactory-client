@@ -66,11 +66,17 @@ const MyOrders = () => {
                         {
                             orders.map((order, index) => <tr key={order._id} className='text-green-200 text-xl'>
                                 <th>{index + 1}</th>
+
                                 <td>{order.toolName}</td>
+
                                 <td>{order.quantity} Pcs</td>
+
                                 <td>$ {order.price}</td>
+
                                 <td><button onClick={() => handleCancelOrder(order._id)} className='btn btn-sm text-xs bg-red-500'>Cancel</button></td>
+
                                 <td><button className='btn btn-sm bg-secondary'>Pay</button></td>
+                                
                             </tr>)
                         }
 
