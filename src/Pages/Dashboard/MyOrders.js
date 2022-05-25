@@ -15,7 +15,7 @@ const MyOrders = () => {
 
 
     // handle order cancel button from My Order page in Dashboard
-    const handleDeleteOrder = (id) => {
+    const handleCancelOrder = (id) => {
         const proceed = window.confirm('Are you sure you want to delete?');
         const url = `http://localhost:5000/orders/${id}`;
         if (proceed) {
@@ -45,6 +45,7 @@ const MyOrders = () => {
                             <th className='text-xl'>Quantity</th>
                             <th className='text-xl'>Price</th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,7 +56,8 @@ const MyOrders = () => {
                                 <td>{order.toolName}</td>
                                 <td>{order.quantity} Pcs</td>
                                 <td>$ {order.price}</td>
-                                <td><button onClick={() => handleDeleteOrder(order._id)} className='btn btn-sm text-xs bg-red-500'>Cancel</button></td>
+                                <td><button onClick={() => handleCancelOrder(order._id)} className='btn btn-sm text-xs bg-red-500'>Cancel</button></td>
+                                <td><button className='btn btn-sm bg-secondary'>Pay</button></td>
                             </tr>)
                         }
 
