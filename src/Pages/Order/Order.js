@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 import Loading from '../Shared/Loading/Loading';
@@ -10,6 +10,8 @@ const Order = () => {
     const { id } = useParams();
 
     const [user] = useAuthState(auth);
+    const [price, setPrice] = useState(0)
+    const orderRef = useRef();
 
     const { data: tool, isLoading } = useQuery('tool', () =>
         fetch(`http://localhost:5000/tools/${id}`).then(res =>
@@ -19,6 +21,15 @@ const Order = () => {
     if (isLoading) {
         return <Loading></Loading>
     }
+
+    const handlePrice = () => {
+        const price = tool.price;
+        const orderQuantity = orderRef.current.value;
+        const newPrice = price * orderQuantity 
+        setPrice(newPrice)
+        
+    }
+
 
     const handlePurchasedBtn = (e) => {
         e.preventDefault();
@@ -31,24 +42,9 @@ const Order = () => {
         const quantity = e.target.quantity.value;
         const address = e.target.address.value;
         const phone = e.target.phone.value;
- 
-        const order = { email, userName, toolName, quantity, address, phone };
 
-        // const name = user?.displayName;
-        // const email = user.email;
-        // const quantity = e.target.quantity.value;
-        // const toolName = e.target.toolName.value;
-        // const address = e.target.address.value;
-        // const phone = e.target.phone.value;
+        const order = { email, userName, toolName, quantity, address, phone,price };
 
-        // const order = {
-        //     userName: name,
-        //     email: email,
-        //     toolName: toolName,
-        //     orderQuantity: quantity,
-        //     address: address,
-        //     phone: phone
-        // }
         if (quantity < minimumQuantity) {
             return toast.warning(`Minimum order ${minimumQuantity} /pcs`)
         }
@@ -69,7 +65,7 @@ const Order = () => {
                     toast.success('Order Placed!')
                 }
             })
-            e.target.reset();
+        e.target.reset();
     }
 
     return (
@@ -77,8 +73,8 @@ const Order = () => {
             <div className="hero-content flex-col lg:flex-row md:w-3/5">
                 <div>
                     <img className='w-full md:w-96 mx-auto' src={tool.img} alt="" />
-                    <div className='mt-2 border border-2 border-secondary p-2 rounded '>
-                        <p className='text-xl font-semibold mb-2'>{tool.name}</p>
+                    <div className='mt-2 border border-accent p-2 rounded '>
+                        <p className='text-secondary text-xl font-semibold mb-2'>{tool.name}</p>
                         <p className='text-justify'>{tool.description}</p>
                     </div>
                 </div>
@@ -103,9 +99,15 @@ const Order = () => {
                         <label className="label">
                             <span className="label-text text-accent">Minimum Order Quantity: {tool.minimumOrder} /pcs</span>
                         </label>
-                        <input type="number" placeholder='Quantity' className="input input-bordered" name='quantity' required />
+                        <input ref={orderRef} onChange={handlePrice} type="number" placeholder='Quantity' className="input input-bordered" name='quantity' required />
                     </div>
 
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text text-accent">Price: ${tool.price} /Pcs </span>
+                        </label>
+                        <input type="text" value={price} className="input input-bordered" name='address' required />
+                    </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text text-accent">Address:</span>
