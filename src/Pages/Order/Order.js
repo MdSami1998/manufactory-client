@@ -25,9 +25,8 @@ const Order = () => {
     const handlePrice = () => {
         const price = tool.price;
         const orderQuantity = orderRef.current.value;
-        const newPrice = price * orderQuantity 
+        const newPrice = price * orderQuantity
         setPrice(newPrice)
-        
     }
 
 
@@ -42,8 +41,8 @@ const Order = () => {
         const quantity = e.target.quantity.value;
         const address = e.target.address.value;
         const phone = e.target.phone.value;
-
-        const order = { email, userName, toolName, quantity, address, phone,price };
+        console.log(address)
+        const order = { email, userName, toolName, quantity, address, phone, price };
 
         if (quantity < minimumQuantity) {
             return toast.warning(`Minimum order ${minimumQuantity} /pcs`)
@@ -66,6 +65,7 @@ const Order = () => {
                 }
             })
         e.target.reset();
+        setPrice(0)
     }
 
     return (
@@ -106,7 +106,7 @@ const Order = () => {
                         <label className="label">
                             <span className="label-text text-accent">Price: ${tool.price} /Pcs </span>
                         </label>
-                        <input type="text" value={price} className="input input-bordered" name='address' required />
+                        <input type="text" value={price} className="input input-bordered" required disabled />
                     </div>
                     <div className="form-control">
                         <label className="label">
