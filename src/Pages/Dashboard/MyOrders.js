@@ -31,9 +31,7 @@ const MyOrders = () => {
 
     // handle order cancel button from My Order page in Dashboard
     const handleCancelOrder = (id) => {
-        const proceed = window.confirm('Are you sure you want to delete?');
         const url = `http://localhost:5000/orders/${id}`;
-        if (proceed) {
             fetch(url, {
                 method: 'DELETE'
             })
@@ -43,9 +41,7 @@ const MyOrders = () => {
                         const remaining = orders.filter(product => product._id !== id);
                         setOrders(remaining);
                     }
-                    console.log(data)
                 })
-        }
     }
 
     return (
@@ -73,17 +69,30 @@ const MyOrders = () => {
 
                                 <td>$ {order.price}</td>
 
-                                <td><button onClick={() => handleCancelOrder(order._id)} className='btn btn-sm text-xs bg-red-500'>Cancel</button></td>
+                                <td>
+                                    <label htmlFor="my-modal" className='btn btn-sm text-xs bg-red-500 hover:text-red-500'>Cancel</label>
 
-                                <td><button className='btn btn-sm bg-secondary'>Pay</button></td>
-                                
+                                    <input type="checkbox" id="my-modal" className="modal-toggle" />
+                                    <div className="modal">
+                                        <div className="modal-box">
+                                        <label htmlFor="my-modal" className="btn btn-sm btn-circle absolute right-2 top-2 bg-accent text-black">✕</label>
+                                            <h3 className="font-bold text-lg">Do you want to cancel the order?</h3>
+                                            <div className="modal-action flex justify-center">
+                                                <label  onClick={() => handleCancelOrder(order._id)} htmlFor="my-modal" className='btn btn-md text-md bg-red-500 hover:text-red-500 text-black'>Yes</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td td > <button className='btn btn-sm bg-secondary'>Pay</button></td>
+
                             </tr>)
                         }
 
                     </tbody>
                 </table>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 };
 

@@ -30,6 +30,7 @@ const AddProduct = () => {
     return (
 
         <div>
+            <h1 className='text-4xl font-semibold text-secondary mt-10'>Add a product</h1>
             <form onSubmit={handleAddProduct}>
                 <div className="card-body p-0 md:p-8 w-3/6 mx-auto  rounded-lg">
                     <div className="form-control">

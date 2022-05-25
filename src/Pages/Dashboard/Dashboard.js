@@ -8,14 +8,14 @@ const Dashboard = () => {
     const [user] = useAuthState(auth);
     const [admin] = useAdmin(user)
     return (
-        <div className="drawer drawer-mobile">
+        <div className="drawer drawer-mobile h-full">
             <input id="dashboard-sidebar" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content flex flex-col">
 
                 <Outlet></Outlet>
 
             </div>
-            <div className="drawer-side -z-0">
+            <div className="drawer-side md:-z-0">
                 <label htmlFor="dashboard-sidebar" className="drawer-overlay"></label>
                 <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content text-lg font-semibold">
                     <li><Link to="/dashboard">My Profile</Link></li>
