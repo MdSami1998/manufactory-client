@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useQuery } from 'react-query';
+import { toast } from 'react-toastify';
 import Loading from '../Shared/Loading/Loading';
 
 const ManageProducts = () => {
-    // const [tools, setTools] = useState([]);
 
     const { data: products, isLoading, refetch } = useQuery('products', () =>
         fetch('http://localhost:5000/tools').then(res =>
@@ -15,15 +15,18 @@ const ManageProducts = () => {
     }
 
     const handleDeleteProduct = (id) => {
-        fetch(`http://localhost:5000/tools/${id}`, {
-            method: 'DELETE'
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.deleteCount > 0) {
-                    refetch()
-                }
+        const proceed = window.confirm('Are you sure you want to delete?');
+        if (proceed) {
+            fetch(`http://localhost:5000/tools/${id}`, {
+                method: 'DELETE'
             })
+                .then(res => res.json())
+                .then(data => {
+                    refetch();
+                })
+            toast.success('Product deleted successfully')
+        }
+
     }
     return (
         <div>
@@ -57,15 +60,15 @@ const ManageProducts = () => {
                                 <td>{tool.minimumOrder} /Pcs</td>
 
                                 {/* <td>
-                                    <label htmlFor="my-modal-1" className='btn btn-sm text-xs bg-red-500 hover:text-red-500'>Cancel</label>
+                                    <label htmlFor="my-modal" className='btn btn-sm text-xs bg-red-500 hover:text-red-500'>Cancel</label>
 
-                                    <input type="checkbox" id="my-modal-1" className="modal-toggle" />
+                                    <input type="checkbox" id="my-modal" className="modal-toggle" />
                                     <div className="modal">
                                         <div className="modal-box">
-                                            <label htmlFor="my-modal-1" className="btn btn-sm btn-circle absolute right-2 top-2 bg-accent text-black">✕</label>
+                                            <label htmlFor="my-modal" className="btn btn-sm btn-circle absolute right-2 top-2 bg-accent text-black">✕</label>
                                             <h3 className="font-bold text-lg">Do you want to cancel the order?</h3>
                                             <div className="modal-action flex justify-center">
-                                                <label onClick={() => handleDeleteProduct(tool._id)} htmlFor="my-modal-1" className='btn btn-md text-md bg-red-500 hover:text-red-500 text-black'>Yes</label>
+                                                <label onClick={() => handleDeleteProduct(tool._id)} htmlFor="my-modal" className='btn btn-md text-md bg-red-500 hover:text-red-500 text-black'>Yes</label>
                                             </div>
                                         </div>
                                     </div>

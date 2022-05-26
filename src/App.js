@@ -19,6 +19,8 @@ import Users from './Pages/Dashboard/Users';
 import ManageAllOrders from './Pages/Dashboard/ManageAllOrders';
 import AddProduct from './Pages/Dashboard/AddProduct';
 import ManagaProducts from './Pages/Dashboard/ManageProducts';
+import RequireAdmin from './Pages/Shared/RequireAdmin/RequireAdmin';
+import Payment from './Pages/Dashboard/Payment';
 
 function App() {
   return (
@@ -26,11 +28,18 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
+
         <Route path='/home' element={<Home></Home>}></Route>
+
         <Route path='/blog' element={<Blogs></Blogs>}></Route>
-        <Route path='/order/:id' element={<RequireAuth>
-          <Order></Order>
-        </RequireAuth>}></Route>
+
+        <Route path='/order/:id' element={
+          <RequireAuth>
+            <Order></Order>
+          </RequireAuth>}>
+        </Route>
+
+        {/* NESTED ROUTE IN DASHBOARD STARTS */}
         <Route path='/dashboard' element={
           <RequireAuth>
             <Dashboard></Dashboard>
@@ -38,13 +47,22 @@ function App() {
           <Route index element={<MyProfile></MyProfile>}></Route>
           <Route path='myorders' element={<MyOrders></MyOrders>}></Route>
           <Route path='addreview' element={<AddReview></AddReview>}></Route>
-          <Route path='users' element={<Users></Users>}></Route>
+          <Route path='payment/:id' element={<Payment></Payment>}></Route>
+          <Route path='users' element={
+            <RequireAdmin>
+              <Users></Users>
+            </RequireAdmin>}>
+          </Route>
           <Route path='manageorder' element={<ManageAllOrders></ManageAllOrders>}></Route>
           <Route path='addproduct' element={<AddProduct></AddProduct>}></Route>
           <Route path='manageproduct' element={<ManagaProducts></ManagaProducts>}></Route>
         </Route>
+        {/* NESTED ROUTE IN DASHBOARD ENDS */}
+
         <Route path='/login' element={<Login></Login>}></Route>
+
         <Route path='/signup' element={<Signup></Signup>}></Route>
+
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
       <Footer></Footer>

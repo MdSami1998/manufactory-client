@@ -1,7 +1,7 @@
 import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 const MyOrders = () => {
@@ -32,20 +32,21 @@ const MyOrders = () => {
     // handle order cancel button from My Order page in Dashboard
     const handleCancelOrder = (id) => {
         const url = `http://localhost:5000/orders/${id}`;
-            fetch(url, {
-                method: 'DELETE'
+        fetch(url, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deleteCount > 0) {
+                    const remaining = orders.filter(product => product._id !== id);
+                    setOrders(remaining);
+                }
             })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.deleteCount > 0) {
-                        const remaining = orders.filter(product => product._id !== id);
-                        setOrders(remaining);
-                    }
-                })
     }
 
     return (
         <div className='my-10'>
+            <h1 className='text-3xl font-semibold'>My Orders: {orders.length}</h1>
             <div className="overflow-x-auto">
                 <table className="table table-zebra w-full">
                     <thead>
@@ -75,16 +76,18 @@ const MyOrders = () => {
                                     <input type="checkbox" id="my-modal" className="modal-toggle" />
                                     <div className="modal">
                                         <div className="modal-box">
-                                        <label htmlFor="my-modal" className="btn btn-sm btn-circle absolute right-2 top-2 bg-accent text-black">✕</label>
+                                            <label htmlFor="my-modal" className="btn btn-sm btn-circle absolute right-2 top-2 bg-accent text-black">✕</label>
                                             <h3 className="font-bold text-lg">Do you want to cancel the order?</h3>
                                             <div className="modal-action flex justify-center">
-                                                <label  onClick={() => handleCancelOrder(order._id)} htmlFor="my-modal" className='btn btn-md text-md bg-red-500 hover:text-red-500 text-black'>Yes</label>
+                                                <label onClick={() => handleCancelOrder(order._id)} htmlFor="my-modal" className='btn btn-md text-md bg-red-500 hover:text-red-500 text-black'>Yes</label>
                                             </div>
                                         </div>
                                     </div>
                                 </td>
 
-                                <td td > <button className='btn btn-sm bg-secondary'>Pay</button></td>
+                                <td>
+                                    {!order.paid ? <Link to={`/dashboard/payment/${order._id}`}><button className='btn btn-sm bg-secondary'>Pay</button></Link>:<span className='text-accent'>Paid</span>}
+                                </td>
 
                             </tr>)
                         }
