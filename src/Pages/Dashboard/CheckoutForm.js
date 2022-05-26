@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import Loading from '../Shared/Loading/Loading';
 
 const CheckoutForm = ({ order }) => {
 
@@ -51,7 +52,6 @@ const CheckoutForm = ({ order }) => {
             setCardError('');
         }
         setSuccess('');
-        setProcessing(true);
         //confirm card payment
 
         const { paymentIntent, error: intentError } = await stripe.confirmCardPayment(
@@ -77,12 +77,12 @@ const CheckoutForm = ({ order }) => {
             setSuccess('Congrates!Your payment is completed');
 
 
-            const payment={
-                order:_id,
-                transectionID:paymentIntent.id
+            const payment = {
+                order: _id,
+                transectionID: paymentIntent.id
             }
-            fetch(`http://localhost:5000/orders/${_id}`,{
-                method:"PATCH",
+            fetch(`http://localhost:5000/orders/${_id}`, {
+                method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
                     'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -96,6 +96,8 @@ const CheckoutForm = ({ order }) => {
         }
     }
 
+
+
     return (
         <>
             <form onSubmit={handleSubmit}>
@@ -104,7 +106,7 @@ const CheckoutForm = ({ order }) => {
                         style: {
                             base: {
                                 fontSize: '16px',
-                                color: '#424770',
+                                color: '#ffffff',
                                 '::placeholder': {
                                     color: '#aab7c4',
                                 },
@@ -115,8 +117,8 @@ const CheckoutForm = ({ order }) => {
                         },
                     }}
                 />
-                <button type="submit" disabled={!stripe || !clientSecret}>
-                    Pay
+                <button className='btn btn-secondary sm:btn-sm md:btn-md hover:bg-transparent hover:text-secondary mt-5' type="submit" disabled={!stripe || !clientSecret}>
+                    Pay Now
                 </button>
             </form>
             {cardError && <p className='text-red-500'>{cardError}</p>}

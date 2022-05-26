@@ -29,7 +29,7 @@ const AddReview = () => {
         if (rating < 0 || rating > 5) {
             return;
         }
-        
+
         fetch('http://localhost:5000/reviews', {
             method: 'POST',
             headers: {
@@ -44,12 +44,13 @@ const AddReview = () => {
                     toast.success('Review Added!')
                 }
             })
+        e.target.reset();
     }
     return (
         <div className='my-16'>
             <h1 className='text-3xl font-semibold text-secondary mb-3'>Add Your Review</h1>
             <form onSubmit={handleAddReview}>
-                <div className="card-body p-0 md:p-8 w-3/6 mx-auto border border-secondary rounded-lg">
+                <div className="card-body p-0 md:p-8 w-3/6 mx-auto">
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text text-accent">Rating</span>
@@ -61,7 +62,7 @@ const AddReview = () => {
                         <label className="label">
                             <span className="label-text text-accent">Review</span>
                         </label>
-                        <textarea className='bg-transparent border border-accent rounded-xl p-3' name="userReview" placeholder='your review' cols="30" rows="4" required></textarea>
+                        <textarea className='bg-transparent border border-gray-700 rounded-xl p-3' name="userReview" placeholder='your review' cols="30" rows="4" required></textarea>
                     </div>
                     <input className='btn btn-secondary hover:bg-transparent hover:text-secondary w-2/5 mx-auto' type="submit" value="Add Review" />
                 </div>

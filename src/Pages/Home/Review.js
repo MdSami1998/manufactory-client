@@ -3,10 +3,10 @@ import React from 'react';
 const Review = ({ userReview }) => {
     const { rating, review } = userReview;
     return (
-        <div className="card max-w-sm  glass shadow-xl">
-            <div className="card-body">
-                <h2 className="card-title">Rating:{rating}</h2>
-                <p>{review}</p>
+        <div className="card max-w-sm bg-gray-600 hover:glass  shadow-xl ">
+            <div className="card-body px-1">
+                <h2 className="text-2xl font-semibold text-accent text-center">Rating:{rating}</h2>
+                <p className='text-xl text-white'>{review}</p>
             </div>
         </div>
     );
