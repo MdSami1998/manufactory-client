@@ -25,6 +25,19 @@ const ManageAllOrders = () => {
         }
 
     }
+    const handleShipment = (id) => {
+        fetch(`http://localhost:5000/manageorders/${id}`, {
+            method: 'PUT'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    refetch();
+                    toast.success('Successfully Shipped the order')
+                }
+            })
+
+    }
     return (
         <div className='my-5'>
             <h1 className='text-3xl text-accent font-semibold mb-8'>Total Orders: {orders.length}</h1>
@@ -38,6 +51,8 @@ const ManageAllOrders = () => {
                             <th className='text-xl'>order</th>
                             <th className='text-xl'>quantity</th>
                             <th></th>
+                            <th></th>
+                            <th className='text-xl'>Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -70,15 +85,29 @@ const ManageAllOrders = () => {
 
                                 <td> <button onClick={() => handleAdminDeleteOrder(order._id)} className='btn btn-sm text-xs bg-red-500 hover:text-red-500'>Delete</button></td>
 
-                                <td> <button className='btn btn-sm bg-secondary'>Pending</button></td>
+                                <td>
+                                    {!order.paid ? <button className='btn btn-sm bg-secondary'>Not paid</button> : <span className='text-accent'>Paid</span>}
+                                </td>
 
+                                <td>
+                                    {!order.paid ? <span className=''></span> :
+                                        <>
+                                            {order.status === "shipped"
+                                                ?
+                                                <h1 className='text-accent'>Shipped</h1>
+                                                :
+                                                <button onClick={() => handleShipment(order._id)} className='text-accent btn btn-sm bg-secondary'>Pending</button>}
+                                        </>
+                                    }
+                                </td>
+                                {/* <button onClick={() => handleShipment(order._id)} className='text-accent btn btn-sm bg-secondary'>{order.status ? "Shipped" : "pending"}</button> */}
                             </tr>)
                         }
 
                     </tbody>
                 </table>
             </div >
-        </div>
+        </div >
     );
 };
 

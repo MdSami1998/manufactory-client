@@ -46,7 +46,7 @@ const MyOrders = () => {
 
     return (
         <div className='my-10'>
-            <h1 className='text-3xl font-semibold'>My Orders: {orders.length}</h1>
+            <h1 className='text-3xl font-semibold'>Orders: {orders.length}</h1>
             <div className="overflow-x-auto">
                 <table className="table table-zebra w-full">
                     <thead>
@@ -57,6 +57,7 @@ const MyOrders = () => {
                             <th className='text-xl'>Price</th>
                             <th></th>
                             <th></th>
+                            <th className='text-xl'>Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -86,7 +87,15 @@ const MyOrders = () => {
                                 </td>
 
                                 <td>
-                                    {!order.paid ? <Link to={`/dashboard/payment/${order._id}`}><button className='btn btn-sm bg-secondary'>Pay</button></Link>:<span className='text-accent'>Paid</span>}
+                                    {!order.paid ? <Link to={`/dashboard/payment/${order._id}`}><button className='btn btn-sm bg-secondary'>Pay</button></Link> : <span className='text-accent'>Paid</span>}
+                                </td>
+
+                                <td>
+                                    {order.status
+                                        ?
+                                        <p className='text-accent'>Shipped</p>
+                                        :
+                                        <p className='text-secondary'>{!order.paid ?"":"Shipping"}</p>}
                                 </td>
 
                             </tr>)

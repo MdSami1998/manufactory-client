@@ -59,8 +59,6 @@ const Users = () => {
                                 <td>{user.email}</td>
 
                                 <td className='text-accent'>{user.role === 'admin' ? 'Admin' : <button onClick={() => makeAdmin(user.email)} className='btn btn-sm text-xs bg-secondary hover:bg-transparent text-black hover:text-secondary'>Make Admin</button>}</td>
-
-                                <td><button className='btn btn-sm text-xs bg-red-500 hover:bg-transparent text-black hover:text-red-500'>Remove Admin</button></td>
                             </tr>)
                         }
 
