@@ -10,19 +10,19 @@ import mongoIcon from '../assets/icons/MongoDB_Logo.svg.png'
 const Portfolio = () => {
 
     return (
-        <div class="hero min-h-screen bg-base-200">
-            <div class="hero-content flex-col lg:flex-row">
-                <img src={profileImg} class="max-w-sm rounded-lg shadow-2xl" alt='' />
+        <div className="hero min-h-screen bg-base-200">
+            <div className="hero-content flex-col lg:flex-row">
+                <img src={profileImg} className="max-w-sm rounded-lg shadow-2xl" alt='' />
                 <div>
-                    <h1 class="text-5xl font-bold">Name: MD. Sami Al Zaber</h1>
-                    <p class="py-6 text-2xl">
+                    <h1 className="text-5xl font-bold">Name: MD. Sami Al Zaber</h1>
+                    <p className="py-6 text-2xl">
                         <span className='text-accent'>Email: </span>
                         samizaber822@gmail.com
                     </p>
-                    <div class="py-6 text-xl">
+                    <div className="py-6 text-xl">
                         <p className='text-accent text-2xl'>Education: </p>
-                        <div class="overflow-x-auto">
-                            <table class="table w-full">
+                        <div className="overflow-x-auto">
+                            <table className="table w-full">
                                 <thead className='text-secondary'>
                                     <tr>
                                         <th></th>
@@ -38,7 +38,7 @@ const Portfolio = () => {
                                         <td>Science</td>
                                         <td>2015</td>
                                     </tr>
-                                    <tr class="hover">
+                                    <tr className="hover">
                                         <th className='text-secondary'>2</th>
                                         <td>HSC</td>
                                         <td>Science</td>
@@ -55,7 +55,7 @@ const Portfolio = () => {
                         </div>
 
                     </div>
-                    <p class="py-6 text-2xl"><span className='text-accent'>
+                    <p className="py-6 text-2xl"><span className='text-accent'>
                         Skills: </span>
                         <div className='bg-gray-400 p-8 rounded'>
                             <div className='grid grid-cols-1 md:grid-cols-3 gap-10'>
@@ -90,8 +90,8 @@ const Portfolio = () => {
                     <div className='text-xl'>
                         <p className='text-accent text-2xl'>Here are my own 3 projects link:</p>
 
-                        <div class="overflow-x-auto">
-                            <table class="table w-full">
+                        <div className="overflow-x-auto">
+                            <table className="table w-full">
                                 <thead className='text-secondary'>
                                     <tr>
                                         <th></th>
@@ -108,7 +108,7 @@ const Portfolio = () => {
                                                 target="_blank" rel="noopener noreferrer" > <span className='text-blue-500 hover:underline'>Click here:</span> <span className='underline'>https://medicure-2fe04.firebaseapp.com/</span></a>
                                         </td>
                                     </tr>
-                                    <tr class="hover">
+                                    <tr className="hover">
                                         <th className='text-secondary'>2</th>
                                         <td>Mobile-Warehouse</td>
                                         <td className='hover:text-accent'>

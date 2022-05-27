@@ -72,7 +72,7 @@ const MyOrders = () => {
                                 <td>$ {order.price}</td>
 
                                 <td>
-                                    <label htmlFor="my-modal" className='btn btn-sm text-xs bg-red-500 hover:text-red-500'>Cancel</label>
+                                    {!order.paid && <label htmlFor="my-modal" className='btn btn-sm text-xs bg-red-500 hover:text-red-500'>Cancel</label>}
 
                                     <input type="checkbox" id="my-modal" className="modal-toggle" />
                                     <div className="modal">
@@ -95,7 +95,7 @@ const MyOrders = () => {
                                         ?
                                         <p className='text-accent'>Shipped</p>
                                         :
-                                        <p className='text-secondary'>{!order.paid ?"":"Shipping"}</p>}
+                                        <p className='text-secondary'>{!order.paid ? "" : "Shipping"}</p>}
                                 </td>
 
                             </tr>)
