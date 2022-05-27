@@ -16,6 +16,7 @@ const Navbar = () => {
     const menuItems = <>
         <li><Link className='text-accent btn btn-ghost' to='/'>Home</Link></li>
         <li><Link className='text-accent btn btn-ghost' to='/blog'>Blogs</Link></li>
+        <li><Link className='text-accent btn btn-ghost' to='/portfolio'>Portfolio</Link></li>
         {
             user && <li><Link className='text-accent btn btn-ghost' to='/dashboard'>Dashboard</Link></li>
         }
@@ -30,7 +31,7 @@ const Navbar = () => {
                 </label>
                 <ul tabIndex="0" className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-full md:w-52">
                     <li>
-                        <span className='text-sm'>Logged in as:</span> <Link className='text-accent text-lg font-semibold' to='/dashboard'>{user?.displayName}
+                        <span className='text-sm p-0'>Logged in as:</span> <Link className='text-accent text-md font-semibold' to='/dashboard'>{user?.displayName}
                         </Link>
                     </li>
                     <li><button className='btn btn-ghost text-accent' onClick={handleLogOut}>Log Out</button></li>

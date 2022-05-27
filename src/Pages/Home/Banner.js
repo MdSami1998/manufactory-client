@@ -11,7 +11,7 @@ const Banner = () => {
                 <div className="max-w-2xl">
                     <p className="text-xl md:text-4xl font-bold"><span className='text-accent text-3xl'>Fine Carpenter Tools</span> <br /> Complete furnishing with best quality</p>
                     <p className="py-6 text-center">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                    <button className="btn btn-secondary bg-transparent text-secondary hover:bg-secondary hover:text-black">Get Started</button>
+                    <a href="#tools"><button className="btn btn-secondary bg-transparent text-secondary hover:bg-secondary hover:text-black">Get Started</button></a>
                 </div>
             </div>
         </div>

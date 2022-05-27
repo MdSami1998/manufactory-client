@@ -5,13 +5,13 @@ import Loading from '../Shared/Loading/Loading';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init'
 import { toast } from 'react-toastify';
-import { set } from 'react-hook-form';
 
 const Order = () => {
     const { id } = useParams();
 
     const [user] = useAuthState(auth);
     const [price, setPrice] = useState(0)
+    const [quan, setQuan] = useState(0);
     const orderRef = useRef();
 
     const { data: tool, isLoading } = useQuery('tool', () =>
@@ -26,6 +26,7 @@ const Order = () => {
     const handlePrice = () => {
         const price = tool.price;
         const orderQuantity = orderRef.current.value;
+        setQuan(orderQuantity);
         const newPrice = price * orderQuantity
         setPrice(newPrice)
     }
@@ -42,7 +43,8 @@ const Order = () => {
         const quantity = e.target.quantity.value;
         const address = e.target.address.value;
         const phone = e.target.phone.value;
-        console.log(address)
+        // console.log(address)
+
         const order = { email, userName, toolName, quantity, address, phone, price };
 
         if (quantity < minimumQuantity) {
@@ -122,7 +124,7 @@ const Order = () => {
                         <input type="tel" placeholder='+880' className="input input-bordered" name='phone' />
                     </div>
 
-                    <button type='submit' className="btn btn-secondary sm:btn-sm md:btn-md hover:bg-transparent hover:text-secondary">purchase</button>
+                    <button disabled={(quan < tool.minimumOrder || quan > tool.availableQuantity) ? true : false} type='submit' className="btn btn-secondary sm:btn-sm md:btn-md hover:bg-transparent hover:text-secondary">purchase</button>
                 </div>
             </div>
         </form>

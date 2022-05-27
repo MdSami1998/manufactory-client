@@ -21,6 +21,7 @@ import AddProduct from './Pages/Dashboard/AddProduct';
 import ManagaProducts from './Pages/Dashboard/ManageProducts';
 import RequireAdmin from './Pages/Shared/RequireAdmin/RequireAdmin';
 import Payment from './Pages/Dashboard/Payment';
+import Portfolio from './Portfolio/Portfolio';
 
 function App() {
   return (
@@ -62,6 +63,8 @@ function App() {
         <Route path='/login' element={<Login></Login>}></Route>
 
         <Route path='/signup' element={<Signup></Signup>}></Route>
+
+        <Route path='/portfolio' element={<Portfolio></Portfolio>}></Route>
 
         <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
