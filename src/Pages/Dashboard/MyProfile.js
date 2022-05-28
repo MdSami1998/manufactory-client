@@ -23,7 +23,7 @@ const MyProfile = () => {
 
     const handleProfileUpdate = (e) => {
         e.preventDefault();
-        const email = member[0].email;
+        const email = member.email;
 
         const education = e.target.education.value;
         const city = e.target.city.value;
@@ -58,19 +58,19 @@ const MyProfile = () => {
                         </tr>
                         <tr>
                             <td className='text-xl font-semibold text-secondary text-center'>Email:</td>
-                            <td className='text-lg'>{member[0].email}</td>
+                            <td className='text-lg'>{member.email}</td>
                         </tr>
                         <tr>
                             <td className='text-xl font-semibold text-secondary text-center'>Education:</td>
-                            <td className='text-lg'>{member[0].education}</td>
+                            <td className='text-lg'>{member.education}</td>
                         </tr>
                         <tr>
                             <td className='text-xl font-semibold text-secondary text-center'>Address:</td>
-                            <td className='text-lg'><span className='text-accent'>City:</span> {member[0].city} <span style={{ marginLeft: '5rem' }} className='text-accent'>District:</span> {member[0].district}</td>
+                            <td className='text-lg'><span className='text-accent'>City:</span> {member.city} <span style={{ marginLeft: '5rem' }} className='text-accent'>District:</span> {member.district}</td>
                         </tr>
                         <tr>
                             <td className='text-xl font-semibold text-secondary text-center'>Phone:</td>
-                            <td className='text-lg'>{member[0].phone}</td>
+                            <td className='text-lg'>{member.phone}</td>
                         </tr>
                     </tbody>
                 </table>

@@ -50,8 +50,8 @@ const ManageAllOrders = () => {
                             <th className='text-xl'>user name</th>
                             <th className='text-xl'>order</th>
                             <th className='text-xl'>quantity</th>
-                            <th></th>
-                            <th></th>
+                            <th className='text-xl'>delete</th>
+                            <th className='text-xl'>payment</th>
                             <th className='text-xl'>Status</th>
                         </tr>
                     </thead>
@@ -83,10 +83,10 @@ const ManageAllOrders = () => {
                                     </div>
                                 </td> */}
 
-                                <td> <button onClick={() => handleAdminDeleteOrder(order._id)} className='btn btn-sm text-xs bg-red-500 hover:text-red-500'>Delete</button></td>
+                                <td> {!order.paid && <button onClick={() => handleAdminDeleteOrder(order._id)} className='btn btn-sm text-xs bg-red-500 hover:text-red-500'>Delete</button>}</td>
 
                                 <td>
-                                    {!order.paid ? <button className='btn btn-sm bg-secondary'>Not paid</button> : <span className='text-accent'>Paid</span>}
+                                    {!order.paid ? <button className='text-secondary'>Not paid</button> : <span className='text-accent'>Paid</span>}
                                 </td>
 
                                 <td>
@@ -100,7 +100,6 @@ const ManageAllOrders = () => {
                                         </>
                                     }
                                 </td>
-                                {/* <button onClick={() => handleShipment(order._id)} className='text-accent btn btn-sm bg-secondary'>{order.status ? "Shipped" : "pending"}</button> */}
                             </tr>)
                         }
 
