@@ -60,7 +60,7 @@ const ManageProducts = () => {
                                 <td>{tool.minimumOrder} /Pcs</td>
 
                                 <td>
-                                    <label htmlFor="my-modal" className='btn btn-sm text-xs bg-red-500 hover:text-red-500'>Cancel</label>
+                                    <label htmlFor="my-modal" className='btn btn-sm text-xs bg-red-500 hover:text-red-500'>Delete</label>
 
                                     <input type="checkbox" id="my-modal" className="modal-toggle" />
                                     <div className="modal">
@@ -73,9 +73,6 @@ const ManageProducts = () => {
                                         </div>
                                     </div>
                                 </td>
-
-                                <td><button onClick={() => handleDeleteProduct(tool._id)} className='btn btn-sm text-xs bg-red-500 text-black hover:bg-transparent hover:text-red-500'>Delete</button></td>
-
                             </tr>)
                         }
 
