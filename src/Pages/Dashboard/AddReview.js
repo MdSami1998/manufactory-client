@@ -30,7 +30,7 @@ const AddReview = () => {
             return;
         }
 
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://whispering-escarpment-42526.herokuapp.com/reviews', {
             method: 'POST',
             headers: {
                 "content-type": "application/json"

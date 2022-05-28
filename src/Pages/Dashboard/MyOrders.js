@@ -11,7 +11,7 @@ const MyOrders = () => {
     // load order in My Order page of Dashboard
     const [orders, setOrders] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/orders?email=${user?.email}`, {
+        fetch(`https://whispering-escarpment-42526.herokuapp.com/orders?email=${user?.email}`, {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -31,7 +31,7 @@ const MyOrders = () => {
 
     // handle order cancel button from My Order page in Dashboard
     const handleCancelOrder = (id) => {
-        const url = `http://localhost:5000/orders/${id}`;
+        const url = `https://whispering-escarpment-42526.herokuapp.com/orders/${id}`;
         fetch(url, {
             method: 'DELETE'
         })

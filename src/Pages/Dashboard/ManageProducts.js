@@ -6,7 +6,7 @@ import Loading from '../Shared/Loading/Loading';
 const ManageProducts = () => {
 
     const { data: products, isLoading, refetch } = useQuery('products', () =>
-        fetch('http://localhost:5000/tools').then(res =>
+        fetch('https://whispering-escarpment-42526.herokuapp.com/tools').then(res =>
             res.json()
         )
     )
@@ -17,14 +17,14 @@ const ManageProducts = () => {
     const handleDeleteProduct = (id) => {
         // const proceed = window.confirm('Are you sure you want to delete?');
         // if (proceed) {
-            fetch(`http://localhost:5000/tools/${id}`, {
-                method: 'DELETE'
+        fetch(`https://whispering-escarpment-42526.herokuapp.com/tools/${id}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                refetch();
             })
-                .then(res => res.json())
-                .then(data => {
-                    refetch();
-                })
-            toast.success('Product deleted successfully')
+        toast.success('Product deleted successfully')
         // }
 
     }

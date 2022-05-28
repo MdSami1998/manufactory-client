@@ -10,7 +10,7 @@ import CheckoutForm from './CheckoutForm';
 const stripePromise = loadStripe('pk_test_51L3dJFGGa1T2l3mS4u8gkaftjs8ziTZJLomiJxbPKqNhQqGIOMRojyabIzFRNs8wLlqBgH2UhLyADRkqfe2Dq8Mt00CvNUQNDd');
 const Payment = () => {
     const { id } = useParams();
-    const url = `http://localhost:5000/orders/${id}`
+    const url = `https://whispering-escarpment-42526.herokuapp.com/orders/${id}`
     const { data: order, isLoading } = useQuery(['order', id], () =>
         fetch(url, {
             method: 'GET',

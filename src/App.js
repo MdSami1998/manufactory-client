@@ -22,6 +22,7 @@ import ManagaProducts from './Pages/Dashboard/ManageProducts';
 import RequireAdmin from './Pages/Shared/RequireAdmin/RequireAdmin';
 import Payment from './Pages/Dashboard/Payment';
 import Portfolio from './Portfolio/Portfolio';
+import ResetPassword from './Pages/Log In/ResetPassword';
 
 function App() {
   return (
@@ -61,6 +62,7 @@ function App() {
         {/* NESTED ROUTE IN DASHBOARD ENDS */}
 
         <Route path='/login' element={<Login></Login>}></Route>
+        <Route path='/resetpassword' element={<ResetPassword></ResetPassword>}></Route>
 
         <Route path='/signup' element={<Signup></Signup>}></Route>
 

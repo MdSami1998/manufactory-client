@@ -4,7 +4,7 @@ import TeamMember from './TeamMember';
 const TeamMembers = () => {
     const [members, setmembers] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/members')
+        fetch('https://whispering-escarpment-42526.herokuapp.com/members')
             .then(res => res.json())
             .then(data => setmembers(data))
     }, [])
@@ -20,4 +20,4 @@ const TeamMembers = () => {
     );
 };
 
-        export default TeamMembers;
+export default TeamMembers;

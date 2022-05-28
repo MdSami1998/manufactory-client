@@ -5,7 +5,7 @@ import Loading from '../Shared/Loading/Loading';
 
 const Users = () => {
     const { data: users, isLoading, refetch } = useQuery('users', () =>
-        fetch('http://localhost:5000/user', {
+        fetch('https://whispering-escarpment-42526.herokuapp.com/user', {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -18,8 +18,8 @@ const Users = () => {
         return <Loading></Loading>
     }
 
-    const makeAdmin = (email,name) => {
-        fetch(`http://localhost:5000/user/admin/${email}`, {
+    const makeAdmin = (email, name) => {
+        fetch(`https://whispering-escarpment-42526.herokuapp.com/user/admin/${email}`, {
             method: 'PUT',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -59,7 +59,7 @@ const Users = () => {
                                 <td className='uppercase'>{user.name}</td>
                                 <td>{user.email}</td>
 
-                                <td className='text-accent'>{user.role === 'admin' ? 'Admin' : <button onClick={() => makeAdmin(user.email,user.name)} className='btn btn-sm text-xs bg-secondary hover:bg-transparent text-black hover:text-secondary'>Make Admin</button>}</td>
+                                <td className='text-accent'>{user.role === 'admin' ? 'Admin' : <button onClick={() => makeAdmin(user.email, user.name)} className='btn btn-sm text-xs bg-secondary hover:bg-transparent text-black hover:text-secondary'>Make Admin</button>}</td>
                             </tr>)
                         }
 

@@ -120,8 +120,8 @@ const Portfolio = () => {
                                         <th className='text-secondary'>3</th>
                                         <td>Manufactory</td>
                                         <td className='hover:text-accent'>
-                                            <a href=''
-                                                target="_blank" rel="noopener noreferrer" > <span className='text-blue-500 hover:underline'>Click here:</span> <span className='underline'></span></a>
+                                            <a href='https://manu-factory.web.app/'
+                                                target="_blank" rel="noopener noreferrer" > <span className='text-blue-500 hover:underline'>Click here:</span> <span className='underline'>https://manu-factory.web.app/</span></a>
                                         </td>
                                     </tr>
                                 </tbody>

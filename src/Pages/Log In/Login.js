@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
@@ -19,8 +19,6 @@ const Login = () => {
 
     const [token] = useToken(user || gUser)
 
-    const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
-
 
     const navigate = useNavigate();
 
@@ -40,16 +38,12 @@ const Login = () => {
         signInError = <p className='text-red-500'>{error.message || gError.message}</p>
     }
 
-    if (loading || gLoading || sending) {
+    if (loading || gLoading) {
         return <Loading></Loading>
     }
 
     const onSubmit = data => {
         signInWithEmailAndPassword(data.email, data.password)
-    };
-
-    const handleResetPassword = () => {
-
     };
 
 
@@ -107,7 +101,7 @@ const Login = () => {
                         <p className='text-center text-lg'><small>
                             New to <span className='text-secondary'> Manu</span>factory? <Link to="/signup" className='text-blue-400 font-semibold'>Create a account</Link></small>
                         </p>
-                        <p onClick={handleResetPassword} className='mb-2 text-blue-400 underline text-sm cursor-pointer'>Forgot Password?</p>
+                        <Link to='/resetpassword' className='mb-2 text-blue-400 underline text-sm cursor-pointer'>Forgot Password?</Link>
 
                         <input className='btn btn-accent sm:btn-sm md:btn-md hover:bg-transparent hover:text-accent w-full max-w-xs' type="submit" value="Login" />
                     </form>

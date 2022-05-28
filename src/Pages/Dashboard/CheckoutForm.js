@@ -14,7 +14,7 @@ const CheckoutForm = ({ order }) => {
     const { _id, price, userName, email } = order;
 
     useEffect(() => {
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://whispering-escarpment-42526.herokuapp.com/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -80,7 +80,7 @@ const CheckoutForm = ({ order }) => {
                 order: _id,
                 transectionID: paymentIntent.id
             }
-            fetch(`http://localhost:5000/orders/${_id}`, {
+            fetch(`https://whispering-escarpment-42526.herokuapp.com/orders/${_id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",

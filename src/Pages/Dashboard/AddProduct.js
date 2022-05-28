@@ -13,7 +13,7 @@ const AddProduct = () => {
 
         const product = { name, price, availableQuantity, img, minimumOrder, description }
 
-        fetch('http://localhost:5000/tools', {
+        fetch('https://whispering-escarpment-42526.herokuapp.com/tools', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -22,7 +22,7 @@ const AddProduct = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if(data.acknowledged){
+                if (data.acknowledged) {
                     toast.success('Product added successfully')
                 }
             })

@@ -5,7 +5,7 @@ import Loading from '../Shared/Loading/Loading'
 
 const Tools = () => {
     const { data: tools, isLoading } = useQuery('tools', () =>
-        fetch('http://localhost:5000/tools').then(res =>
+        fetch('https://whispering-escarpment-42526.herokuapp.com/tools').then(res =>
             res.json()
         )
     )

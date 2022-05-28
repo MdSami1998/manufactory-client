@@ -8,7 +8,7 @@ import Loading from '../Shared/Loading/Loading';
 const MyProfile = () => {
     const [user] = useAuthState(auth)
     const { data: member, isLoading, refetch } = useQuery('member', () =>
-        fetch(`http://localhost:5000/member?email=${user.email}`, {
+        fetch(`https://whispering-escarpment-42526.herokuapp.com/member?email=${user.email}`, {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -21,6 +21,7 @@ const MyProfile = () => {
         return <Loading></Loading>
     }
 
+
     const handleProfileUpdate = (e) => {
         e.preventDefault();
         const email = member.email;
@@ -32,7 +33,7 @@ const MyProfile = () => {
 
         const updatedProfile = { education, city, district, phone };
 
-        fetch(`http://localhost:5000/member/${email}`, {
+        fetch(`https://whispering-escarpment-42526.herokuapp.com/member/${email}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

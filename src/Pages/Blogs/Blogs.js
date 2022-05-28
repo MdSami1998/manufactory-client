@@ -36,11 +36,11 @@ const Blogs = () => {
                 </div>
 
                 <div className='glass text-white p-8 my-5 font-bold rounded-xl'>
-                    <h1 className='text-lg md:text-2xl font-bold mb-5 text-accent'>4. Why you do not set the state directly in React</h1>
+                    <h1 className='text-lg md:text-2xl font-bold mb-5 text-accent'>4. Why you do not set the state directly in React?</h1>
 
                     <p className='font-medium text-md md:text-xl leading-8 md:leading-10 text-justify'>
                         <span className='text-accent font-bold'>ANS: </span> <br /> 
-
+                        We should never update the state directly because of the following reasons: If we update it directly, calling the setState() later we may just replace the update made. If we directly update the state, it does not change this.
                     </p>
                 </div>
                 <div className='glass text-white p-8 font-bold rounded-xl'>

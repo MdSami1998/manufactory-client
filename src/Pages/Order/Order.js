@@ -15,7 +15,7 @@ const Order = () => {
     const orderRef = useRef();
 
     const { data: tool, isLoading } = useQuery('tool', () =>
-        fetch(`http://localhost:5000/tools/${id}`).then(res =>
+        fetch(`https://whispering-escarpment-42526.herokuapp.com/tools/${id}`).then(res =>
             res.json()
         )
     )
@@ -54,7 +54,7 @@ const Order = () => {
             return toast.warning(`Stock available ${stockAvailable} /pcs.You can't purchage more then ${stockAvailable} /pcs`)
         }
 
-        fetch('http://localhost:5000/orders', {
+        fetch('https://whispering-escarpment-42526.herokuapp.com/orders', {
             method: 'POST',
             headers: {
                 "content-type": "application/json"
@@ -77,7 +77,7 @@ const Order = () => {
                 <div>
                     <img className='w-full md:w-96 mx-auto' src={tool.img} alt="" />
                     <div className='mt-2 border border-accent p-2 rounded '>
-                        <p className='text-secondary text-xl font-semibold mb-2'>{tool.name}</p>
+                        <p className='text-accent text-xl font-semibold mb-2'>{tool.name}</p>
                         <p className='text-justify'>{tool.description}</p>
                     </div>
                 </div>

@@ -5,7 +5,7 @@ import Loading from '../Shared/Loading/Loading';
 
 const ManageAllOrders = () => {
     const { data: orders, isLoading, refetch } = useQuery('orders', () =>
-        fetch('http://localhost:5000/manageorders').then(res =>
+        fetch('https://whispering-escarpment-42526.herokuapp.com/manageorders').then(res =>
             res.json()
         )
     )
@@ -16,7 +16,7 @@ const ManageAllOrders = () => {
     const handleAdminDeleteOrder = (id) => {
         const proceed = window.confirm('Are you sure you want to delete?');
         if (proceed) {
-            fetch(`http://localhost:5000/manageorders/${id}`, {
+            fetch(`https://whispering-escarpment-42526.herokuapp.com/manageorders/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -26,7 +26,7 @@ const ManageAllOrders = () => {
 
     }
     const handleShipment = (id) => {
-        fetch(`http://localhost:5000/manageorders/${id}`, {
+        fetch(`https://whispering-escarpment-42526.herokuapp.com/manageorders/${id}`, {
             method: 'PUT'
         })
             .then(res => res.json())
