@@ -1,4 +1,4 @@
-# Project Name is [ManuFactory]( ).This project was created by me. [Live Preview]( )
+# Project Name is [ManuFactory](https://manu-factory.web.app/).This project was created by me. [Live Preview](https://manu-factory.web.app/)
 
 # Website Description
 

@@ -13,14 +13,6 @@ const firebaseConfig = {
     appId: process.env.REACT_APP_APP_ID
 };
 
-// const firebaseConfig = {
-//     apiKey: "AIzaSyCzvh--h-RfygdOM-mtyu6OTCz7ColgI_A",
-//     authDomain: "manu-factory.firebaseapp.com",
-//     projectId: "manu-factory",
-//     storageBucket: "manu-factory.appspot.com",
-//     messagingSenderId: "959236872883",
-//     appId: "1:959236872883:web:3c627f6330315c8427eec6"
-//   };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
