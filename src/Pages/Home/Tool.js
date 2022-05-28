@@ -17,8 +17,8 @@ const Tool = ({ tool }) => {
             <div className="card-body items-center text-center pt-3">
                 <h2 className="text-3xl font-semibold">{name}</h2>
                 <small>{description}</small>
-                <p className='text-lg'>Minimum Order: {minimumOrder} <span className='text-accent'>/pcs</span></p>
-                <p className='text-lg'>Stock available: {availableQuantity} <span className='text-accent'>/pcs</span></p>
+                <p className='text-lg'>Minimum Order: {minimumOrder} <span className='text-accent'> Pcs</span></p>
+                <p className='text-lg'>Stock available: {availableQuantity} <span className='text-accent'> Pcs</span></p>
                 <p className='text-lg'>Price: ${price} <span className='text-accent'>/pcs</span></p>
                 <div className="card-actions">
                     <button onClick={() => handleOrderBtn(_id)} className="btn btn-secondary sm:btn-sm md:btn-md hover:bg-transparent hover:text-secondary">Purchase now</button>

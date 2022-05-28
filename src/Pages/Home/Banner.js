@@ -6,7 +6,7 @@ const Banner = () => {
         <div className="hero md:min-h-screen" style={{
             backgroundImage: `url(${banner})`
         }}>
-            <div className="hero-overlay bg-opacity-80"></div>
+            <div className="hero-overlay bg-opacity-80 blur-xl"></div>
             <div className="hero-content text-center text-neutral-content">
                 <div className="max-w-2xl">
                     <p className="text-xl md:text-4xl font-bold"><span className='text-accent text-3xl'>Fine Carpenter Tools</span> <br /> Complete furnishing with best quality</p>

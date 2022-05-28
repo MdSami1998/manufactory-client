@@ -15,8 +15,8 @@ const ManageProducts = () => {
     }
 
     const handleDeleteProduct = (id) => {
-        const proceed = window.confirm('Are you sure you want to delete?');
-        if (proceed) {
+        // const proceed = window.confirm('Are you sure you want to delete?');
+        // if (proceed) {
             fetch(`http://localhost:5000/tools/${id}`, {
                 method: 'DELETE'
             })
@@ -25,7 +25,7 @@ const ManageProducts = () => {
                     refetch();
                 })
             toast.success('Product deleted successfully')
-        }
+        // }
 
     }
     return (
@@ -59,7 +59,7 @@ const ManageProducts = () => {
 
                                 <td>{tool.minimumOrder} /Pcs</td>
 
-                                {/* <td>
+                                <td>
                                     <label htmlFor="my-modal" className='btn btn-sm text-xs bg-red-500 hover:text-red-500'>Cancel</label>
 
                                     <input type="checkbox" id="my-modal" className="modal-toggle" />
@@ -72,7 +72,7 @@ const ManageProducts = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </td> */}
+                                </td>
 
                                 <td><button onClick={() => handleDeleteProduct(tool._id)} className='btn btn-sm text-xs bg-red-500 text-black hover:bg-transparent hover:text-red-500'>Delete</button></td>
 

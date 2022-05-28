@@ -12,7 +12,7 @@ const Footer = () => {
     };
     return (
         <footer className='h-auto'>
-            <div className='footer-info p-10 pb-0'>
+            <div className='footer-info p-0 md:p-10 pb-0'>
                 <div>
                     <h1 onClick={handleLogoClick} className=' text-center text-4xl font-bold cursor-pointer text-secondary'>Manu<span className='text-accent'>Factory</span></h1>
                 </div>

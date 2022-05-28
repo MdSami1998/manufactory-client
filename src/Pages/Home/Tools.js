@@ -13,7 +13,7 @@ const Tools = () => {
         return <Loading></Loading>
     }
     return (
-        <div id='tools'>
+        <div>
             <h1 className='text-accent text-5xl font-bold mt-10'>Our Products</h1>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-20 my-10 px-2 md:px-20'>
                 {

@@ -50,7 +50,7 @@ const AddReview = () => {
         <div className='my-16'>
             <h1 className='text-3xl font-semibold text-secondary mb-3'>Add Your Review</h1>
             <form onSubmit={handleAddReview}>
-                <div className="card-body p-0 md:p-8 w-3/6 mx-auto">
+                <div className="card-body p-3 md:p-8 w-full md:w-3/6 mx-auto">
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text text-accent">Rating</span>

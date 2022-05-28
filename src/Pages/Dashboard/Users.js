@@ -18,7 +18,7 @@ const Users = () => {
         return <Loading></Loading>
     }
 
-    const makeAdmin = (email) => {
+    const makeAdmin = (email,name) => {
         fetch(`http://localhost:5000/user/admin/${email}`, {
             method: 'PUT',
             headers: {
@@ -32,9 +32,10 @@ const Users = () => {
                 return res.json()
             })
             .then(data => {
+                console.log(data)
                 if (data.modifiedCount > 0) {
                     refetch();
-                    toast.success('Successfully made an admin')
+                    toast.success(`Successfully made ${name} as an admin`)
                 }
             });
     }
@@ -55,10 +56,10 @@ const Users = () => {
                         {
                             users.map((user, index) => <tr key={user._id} className='text-green-200 text-xl'>
                                 <th>{index + 1}</th>
-                                <td>{user.name}</td>
+                                <td className='uppercase'>{user.name}</td>
                                 <td>{user.email}</td>
 
-                                <td className='text-accent'>{user.role === 'admin' ? 'Admin' : <button onClick={() => makeAdmin(user.email)} className='btn btn-sm text-xs bg-secondary hover:bg-transparent text-black hover:text-secondary'>Make Admin</button>}</td>
+                                <td className='text-accent'>{user.role === 'admin' ? 'Admin' : <button onClick={() => makeAdmin(user.email,user.name)} className='btn btn-sm text-xs bg-secondary hover:bg-transparent text-black hover:text-secondary'>Make Admin</button>}</td>
                             </tr>)
                         }
 

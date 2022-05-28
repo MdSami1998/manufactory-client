@@ -55,8 +55,9 @@ const MyOrders = () => {
                             <th className='text-xl'>Tool</th>
                             <th className='text-xl'>Quantity</th>
                             <th className='text-xl'>Price</th>
-                            <th></th>
-                            <th></th>
+                            <th className='text-xl'>Delete</th>
+                            <th className='text-xl'>Payment</th>
+                            <th className='text-xl'>Transaction Id</th>
                             <th className='text-xl'>Status</th>
                         </tr>
                     </thead>
@@ -88,6 +89,10 @@ const MyOrders = () => {
 
                                 <td>
                                     {!order.paid ? <Link to={`/dashboard/payment/${order._id}`}><button className='btn btn-sm bg-secondary'>Pay</button></Link> : <span className='text-accent'>Paid</span>}
+                                </td>
+
+                                <td>
+                                    {order.transectionID && <small className='text-accent'>{order.transectionID}</small>}
                                 </td>
 
                                 <td>

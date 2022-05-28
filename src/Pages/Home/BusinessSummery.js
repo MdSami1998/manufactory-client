@@ -18,7 +18,7 @@ const BusinessSummery = () => {
                     <img className='bg-secondary w-24 rounded-full mx-auto mb-6' src={client} alt="" />
                     <p className=' text-3xl'><span className='font-bold'>120+</span>  <br /> Happy Clients</p>
                 </div>
-                <div>
+                <div id='tools'>
                     <img className='bg-secondary w-24 rounded-full mx-auto mb-6' src={feedback} alt="" />
                     <p className=' text-3xl'><span className='font-bold'>200+</span> <br />Feedbacks</p>
                 </div>

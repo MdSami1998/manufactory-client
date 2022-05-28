@@ -22,7 +22,9 @@ const AddProduct = () => {
         })
             .then(res => res.json())
             .then(data => {
-                toast.success('Product added successfully')
+                if(data.acknowledged){
+                    toast.success('Product added successfully')
+                }
             })
         e.target.reset();
 
@@ -32,7 +34,7 @@ const AddProduct = () => {
         <div>
             <h1 className='text-4xl font-semibold text-secondary mt-10'>Add a product</h1>
             <form onSubmit={handleAddProduct}>
-                <div className="card-body p-0 md:p-8 w-3/6 mx-auto  rounded-lg">
+                <div className="card-body p-3 md:p-8 w-full md:w-3/6 mx-auto  rounded-lg">
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text text-accent">Name</span>

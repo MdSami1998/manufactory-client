@@ -36,19 +36,19 @@ const Portfolio = () => {
                                         <th className='text-secondary'>1</th>
                                         <td>SSC</td>
                                         <td>Science</td>
-                                        <td>2015</td>
+                                        <td className='text-accent'>2015</td>
                                     </tr>
                                     <tr className="hover">
                                         <th className='text-secondary'>2</th>
                                         <td>HSC</td>
                                         <td>Science</td>
-                                        <td>2017</td>
+                                        <td className='text-accent'>2017</td>
                                     </tr>
                                     <tr>
                                         <th className='text-secondary'>3</th>
                                         <td>Bechalor</td>
                                         <td>Computer Science And Technology</td>
-                                        <td>Running</td>
+                                        <td>Running <span className='text-accent'>(2019-2023)</span></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -84,7 +84,7 @@ const Portfolio = () => {
                                     <p className='font-semibold text-lg text-secondary mt-1'>MongoDB Server</p>
                                 </div>
                             </div>
-                            <p className='text-black font-semibold text-2xl'>I Learend these 6 technologies skill as a web developer.</p>
+                            <p className='text-black font-semibold text-2xl mt-3'>** I Learend these 6 technologies skill as a web developer.**</p>
                         </div>
                     </p>
                     <div className='text-xl'>
