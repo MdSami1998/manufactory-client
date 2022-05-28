@@ -45,7 +45,7 @@ const Blogs = () => {
                 </div> 
                 
                 <div className='glass text-white p-8 my-5 font-bold rounded-xl'>
-                    <h1 className='text-lg md:text-2xl font-bold mb-5 text-accent'>6. What is a unit test? Why should write unit tests?</h1>
+                    <h1 className='text-lg md:text-2xl font-bold mb-5 text-accent'>5. What is a unit test? Why should write unit tests?</h1>
 
                     <p className='font-medium text-md md:text-xl leading-8 md:leading-10 text-justify'>
                         <span className='text-accent font-bold'>ANS: </span> <br /> Unit testing enables the programmer to rewrite code at a later time while ensuring that the module continues to function properly. The practice is to create test cases for all functions and methods so that any changes that cause a problem can be swiftly discovered and corrected.
