@@ -42,16 +42,8 @@ const Blogs = () => {
                         <span className='text-accent font-bold'>ANS: </span> <br /> 
                         We should never update the state directly because of the following reasons: If we update it directly, calling the setState() later we may just replace the update made. If we directly update the state, it does not change this.
                     </p>
-                </div>
-                <div className='glass text-white p-8 font-bold rounded-xl'>
-                    <h1 className='text-lg md:text-2xl font-bold mb-5 text-accent'>5. You have an array of products. Each product has a name, price, description, etc. How will you implement a search to find products by name?</h1>
-
-                    <p className='font-medium text-md md:text-xl leading-8 md:leading-10 text-justify'>
-                        <span className='text-accent font-bold'>ANS: </span> <br /> 
-
-                    </p>
-                </div>
-
+                </div> 
+                
                 <div className='glass text-white p-8 my-5 font-bold rounded-xl'>
                     <h1 className='text-lg md:text-2xl font-bold mb-5 text-accent'>6. What is a unit test? Why should write unit tests?</h1>
 
